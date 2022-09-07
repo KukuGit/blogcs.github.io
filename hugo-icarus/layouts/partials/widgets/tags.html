@@ -1,0 +1,51 @@
+{{ if .Site.Params.widgets.recent_articles }}
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        {{ with .Site.Data.l10n.widgets.tags.title }}{{.}}{{end}}
+    </h3>
+    <div class="widget">
+      <ul id="category-list">
+            {{ range .Site.RegularPages.ByPublishDate.Reverse }}
+            <li>
+                <div class="item-inner">
+                    {{ if isset .Params "categories" }}
+                    {{ if gt (len .Params.categories) 0 }}
+
+                    {{ end }}
+                    {{ end }}
+                    <p class="item-title"><a href="{{ .Permalink }}" class="title">{{ .Title }}</a></p>
+
+                </div>
+            </li>
+            {{ end }}
+        </ul>
+    </div>
+</div>
+{{ end }}
+
+
+
+<!--{{ if .Site.Params.widgets.tags }}
+{{ if isset .Site.Taxonomies "tags" }}
+{{ if not (eq (len .Site.Taxonomies.tags)  1) }}
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        {{ with .Site.Data.l10n.widgets.tags.title }}{{.}}{{end}}
+    </h3>
+    <div class="widget">
+        <ul class="category-list">
+            {{ range $name, $items := .Site.Taxonomies.tags }}
+            <li class="category-list-item">
+                {{ $url := printf "%s/%s" "tags" ($name | urlize | lower)}}
+                <a class="category-list-link" href="{{ $url | absURL }}">
+                    {{ $name }}
+                </a>
+                <span class="category-list-count">{{ len $items }}</span> 统计同tags的篇数
+            </li>
+            {{ end }}
+        </ul>
+    </div>
+</div>
+{{ end }}
+{{ end }}
+{{ end }}-->
